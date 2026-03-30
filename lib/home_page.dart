@@ -568,35 +568,37 @@ class _InsightCard extends StatelessWidget {
       ),
       child: isAnalyzing
           ? const Center(child: CircularProgressIndicator())
-          : Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Image Analysis',
-                  style: TextStyle(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 8),
-                _MetricRow(label: 'Faces', value: insights.faceCount.toString()),
-                _MetricRow(label: 'Age Group', value: insights.ageGroup),
-                _MetricRow(label: 'Smile', value: insights.smile),
-                _MetricRow(label: 'Left Eye Open', value: insights.leftEye),
-                _MetricRow(label: 'Right Eye Open', value: insights.rightEye),
-                const SizedBox(height: 8),
-                Text(
-                  insights.errorMessage ?? insights.qualityHint,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: insights.errorMessage == null
-                        ? Colors.grey.shade700
-                        : Colors.red,
+          : SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Image Analysis',
+                    style: TextStyle(fontWeight: FontWeight.w700),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'Note: age estimation is not available in ML Kit face detection.',
-                  style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
-                ),
-              ],
+                  const SizedBox(height: 8),
+                  _MetricRow(label: 'Faces', value: insights.faceCount.toString()),
+                  _MetricRow(label: 'Age Group', value: insights.ageGroup),
+                  _MetricRow(label: 'Smile', value: insights.smile),
+                  _MetricRow(label: 'Left Eye Open', value: insights.leftEye),
+                  _MetricRow(label: 'Right Eye Open', value: insights.rightEye),
+                  const SizedBox(height: 8),
+                  Text(
+                    insights.errorMessage ?? insights.qualityHint,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: insights.errorMessage == null
+                          ? Colors.grey.shade700
+                          : Colors.red,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Note: age estimation is not available in ML Kit face detection.',
+                    style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
+                  ),
+                ],
+              ),
             ),
     );
   }
